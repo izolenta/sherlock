@@ -36,8 +36,7 @@ class TwoAdjacentClue extends GenericClue {
     // TODO: implement applyToField
   }
 
-  @override
-  bool equalsTo(GenericClue clue) {
-    return clue is TwoAdjacentClue && first.equalsTo(clue.first) && second.equalsTo(clue.second);
+  bool operator ==(clue) {
+    return clue is TwoAdjacentClue && equalsPair([first, second], [clue.first, clue.second]);
   }
 }

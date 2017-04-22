@@ -42,11 +42,9 @@ class ThreeAdjacentClue extends GenericClue {
     // TODO: implement applyToField
   }
 
-  @override
-  bool equalsTo(GenericClue clue) {
+  bool operator ==(clue) {
     return clue is ThreeAdjacentClue
-        && clue.first.equalsTo(first)
-        && clue.second.equalsTo(second)
-        && clue.third.equalsTo(third);
+        && clue.third ==  third
+        && equalsPair([clue.first, clue.second], [first, second]);
   }
 }

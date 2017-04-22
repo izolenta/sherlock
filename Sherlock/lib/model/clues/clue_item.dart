@@ -4,7 +4,7 @@ class ClueItem {
 
   ClueItem(this.line, this.number);
 
-  bool equalsTo(ClueItem item) {
-    return item.line == line && item.number == number;
+  bool operator ==(item) {
+    return item is ClueItem && item.line == line && item.number == number;
   }
 }

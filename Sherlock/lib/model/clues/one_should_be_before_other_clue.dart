@@ -31,8 +31,7 @@ class OneShouldBeBeforeOtherClue extends GenericClue {
     // TODO: implement applyToField
   }
 
-  @override
-  bool equalsTo(GenericClue clue) {
-    return clue is OneShouldBeBeforeOtherClue && first.equalsTo(clue.first) && second.equalsTo(clue.second);
+  bool operator ==(clue) {
+    return clue is OneShouldBeBeforeOtherClue && first == clue.first && second == clue.second;
   }
 }

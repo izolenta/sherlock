@@ -40,8 +40,7 @@ class TwoNotAdjacentClue extends GenericClue {
     // TODO: implement applyToField
   }
 
-  @override
-  bool equalsTo(GenericClue clue) {
-    return clue is TwoNotAdjacentClue && first.equalsTo(clue.first) && second.equalsTo(clue.second);
+  bool operator ==(clue) {
+    return clue is TwoNotAdjacentClue && equalsPair([first, second], [clue.first, clue.second]);
   }
 }
