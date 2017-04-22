@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699797c5-4ef6-4d2a-a164-649648d8e251" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Sherlock.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1384">
-              <caret line="301" column="53" lean-forward="false" selection-start-line="301" selection-start-column="53" selection-end-line="301" selection-end-column="53" />
+            <state relative-caret-position="1401">
+              <caret line="302" column="53" lean-forward="false" selection-start-line="302" selection-start-column="53" selection-end-line="302" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -527,11 +526,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492836455359</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=".idea removed">
+      <created>1492836658788</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1492836658788</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4670000" />
+    <option name="totallyTimeSpent" value="4695000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -570,7 +576,8 @@
     <MESSAGE value="very first" />
     <MESSAGE value="dir changed" />
     <MESSAGE value="clues" />
-    <option name="LAST_COMMIT_MESSAGE" value="clues" />
+    <MESSAGE value=".idea removed" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea removed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -989,8 +996,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1384">
-          <caret line="301" column="53" lean-forward="false" selection-start-line="301" selection-start-column="53" selection-end-line="301" selection-end-column="53" />
+        <state relative-caret-position="1401">
+          <caret line="302" column="53" lean-forward="false" selection-start-line="302" selection-start-column="53" selection-end-line="302" selection-end-column="53" />
           <folding />
         </state>
       </provider>
