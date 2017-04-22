@@ -8,8 +8,7 @@ class TwoNotInSameColumnClue extends GenericClue {
   final ClueItem second;
 
   @override
-  String get description =>
-      "These two items should NOT be placed in same column";
+  String get description => "These two items should NOT be placed in same column";
 
   TwoNotInSameColumnClue(this.first, this.second);
 
