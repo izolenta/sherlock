@@ -4,8 +4,9 @@ abstract class GenericClue {
   String get description;
   int get sortOrder;
 
+  GenericClue equalsTo(GenericClue clue);
+
   bool applyToField(GameField board);
-  bool equalsTo(GenericClue);
 
   static GenericClue generateClue(GameField board) {
 
