@@ -29,4 +29,18 @@ class GameField implements Cloneable {
   Cloneable clone() {
     return new GameField.fromArray(lines);
   }
+
+  void printCorrectState() {
+    int cnt = 0;
+    for (GameLine line in lines) {
+      print(
+          "$cnt${line.cells[0].correctItem} "
+              "$cnt${line.cells[1].correctItem} "
+              "$cnt${line.cells[2].correctItem} "
+              "$cnt${line.cells[3].correctItem} "
+              "$cnt${line.cells[4].correctItem} "
+              "$cnt${line.cells[5].correctItem}");
+      cnt++;
+    }
+  }
 }

@@ -4,7 +4,9 @@
 //import 'package:angular2/platform/browser.dart';
 
 //import 'package:untitled/app_component.dart';
+import 'package:untitled/model/clues/generic_clue.dart';
 import 'package:untitled/model/game_field.dart';
+import 'package:untitled/util/clue_generator.dart';
 
 void main() {
 //  bootstrap(AppComponent);
@@ -13,9 +15,7 @@ void main() {
 
 void generateBoard() {
   GameField field = new GameField.initial();
-  for (var line in field.lines) {
-    for (var cell in line.cells) {
-      print([cell.currentState.state, cell.correctItem]);
-    }
-  }
+  field.printCorrectState();
+  print('-------------------------');
+  List<GenericClue> clues = ClueGenerator.generateClueSet(field);
 }
