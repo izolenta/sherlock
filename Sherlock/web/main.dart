@@ -9,7 +9,7 @@ import 'package:sherlock/model/game_field.dart';
 import 'package:sherlock/services/game_service.dart';
 
 Future main() async {
-  await new Future.delayed(new Duration(seconds: 0));
+  await new Future.delayed(new Duration(seconds: 3));
   bootstrap(AppComponent);
 //  generateBoard();
 }

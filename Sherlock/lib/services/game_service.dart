@@ -32,10 +32,10 @@ class GameService {
   PuzzleDescription _generateRuleSet(GameField field, int id) {
     List<GenericClue> clues;
     GameField fieldClone;
-    _openRandomCell(field);
-    _openRandomCell(field);
-    _openRandomCell(field);
-    _openRandomCell(field);
+//    _openRandomCell(field);
+//    _openRandomCell(field);
+//    _openRandomCell(field);
+//    _openRandomCell(field);
     _openRandomCell(field);
     while(true) {
       clues = ClueGenerator.generateClueSet(field);
