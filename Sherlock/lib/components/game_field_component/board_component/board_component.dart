@@ -1,7 +1,7 @@
 import 'package:angular2/angular2.dart';
-import 'package:untitled/components/game_field_component/board_cell_component/board_cell_component.dart';
-import 'package:untitled/model/game_field.dart';
-import 'package:untitled/services/game_service.dart';
+import 'package:sherlock/components/game_field_component/board_cell_component/board_cell_component.dart';
+import 'package:sherlock/model/game_field.dart';
+import 'package:sherlock/services/game_service.dart';
 
 @Component(
     selector: 'board',

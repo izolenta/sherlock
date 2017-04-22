@@ -1,8 +1,8 @@
 import 'dart:math';
-import 'package:untitled/model/clues/clue_item.dart';
-import 'package:untitled/model/clues/generic_clue.dart';
-import 'package:untitled/model/game_field.dart';
-import 'package:untitled/model/game_state.dart';
+import 'package:sherlock/model/clues/clue_item.dart';
+import 'package:sherlock/model/clues/generic_clue.dart';
+import 'package:sherlock/model/game_field.dart';
+import 'package:sherlock/model/game_state.dart';
 
 class TwoWithNoThirdAtCenterClue extends GenericClue {
 

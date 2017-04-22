@@ -1,6 +1,6 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular2_components/angular2_components.dart';
-import 'package:untitled/components/game_field_component/board_component/board_component.dart';
+import 'package:sherlock/components/game_field_component/board_component/board_component.dart';
 
 @Component(
     selector: 'game-field',

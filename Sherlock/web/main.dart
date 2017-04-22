@@ -4,9 +4,9 @@
 import 'dart:async';
 import 'package:angular2/platform/browser.dart';
 
-import 'package:untitled/app_component.dart';
-import 'package:untitled/model/game_field.dart';
-import 'package:untitled/services/game_service.dart';
+import 'package:sherlock/app_component.dart';
+import 'package:sherlock/model/game_field.dart';
+import 'package:sherlock/services/game_service.dart';
 
 Future main() async {
   await new Future.delayed(new Duration(seconds: 1));

@@ -1,5 +1,5 @@
-import 'package:untitled/model/game_state.dart';
-import 'package:untitled/util/cloneable.dart';
+import 'package:sherlock/model/game_state.dart';
+import 'package:sherlock/util/cloneable.dart';
 
 class GameCell implements Cloneable {
   final int _correctItem;

@@ -3,8 +3,8 @@ library sherlock.tests;
 
 import 'dart:math';
 import 'package:test/test.dart';
-import 'package:untitled/model/game_cell.dart';
-import 'package:untitled/model/game_line.dart';
+import 'package:sherlock/model/game_cell.dart';
+import 'package:sherlock/model/game_line.dart';
 
 void initTest() {
   group("board tests", () {

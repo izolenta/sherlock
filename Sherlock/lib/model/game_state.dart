@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:untitled/util/cloneable.dart';
+import 'package:sherlock/util/cloneable.dart';
 
 class GameState implements Cloneable {
 

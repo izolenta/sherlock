@@ -1,7 +1,7 @@
 import 'dart:math';
-import 'package:untitled/model/game_cell.dart';
-import 'package:untitled/model/game_state.dart';
-import 'package:untitled/util/cloneable.dart';
+import 'package:sherlock/model/game_cell.dart';
+import 'package:sherlock/model/game_state.dart';
+import 'package:sherlock/util/cloneable.dart';
 
 class GameLine implements Cloneable {
 

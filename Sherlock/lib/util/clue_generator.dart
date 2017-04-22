@@ -1,12 +1,12 @@
-import 'package:untitled/model/clues/generic_clue.dart';
-import 'package:untitled/model/clues/one_should_be_before_other_clue.dart';
-import 'package:untitled/model/clues/three_adjacent_clue.dart';
-import 'package:untitled/model/clues/two_adjacent_clue.dart';
-import 'package:untitled/model/clues/two_in_same_column_clue.dart';
-import 'package:untitled/model/clues/two_not_adjacent_clue.dart';
-import 'package:untitled/model/clues/two_not_in_same_column_clue.dart';
-import 'package:untitled/model/clues/two_with_not_third_at_center_clue.dart';
-import 'package:untitled/model/game_field.dart';
+import 'package:sherlock/model/clues/generic_clue.dart';
+import 'package:sherlock/model/clues/one_should_be_before_other_clue.dart';
+import 'package:sherlock/model/clues/three_adjacent_clue.dart';
+import 'package:sherlock/model/clues/two_adjacent_clue.dart';
+import 'package:sherlock/model/clues/two_in_same_column_clue.dart';
+import 'package:sherlock/model/clues/two_not_adjacent_clue.dart';
+import 'package:sherlock/model/clues/two_not_in_same_column_clue.dart';
+import 'package:sherlock/model/clues/two_with_not_third_at_center_clue.dart';
+import 'package:sherlock/model/game_field.dart';
 
 class ClueGenerator {
   static List<GenericClue> generateClueSet(GameField board) {

@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'package:angular2/angular2.dart';
-import 'package:untitled/model/clues/generic_clue.dart';
-import 'package:untitled/model/game_field.dart';
-import 'package:untitled/model/game_line.dart';
-import 'package:untitled/model/puzzle_description.dart';
-import 'package:untitled/util/board_solver.dart';
-import 'package:untitled/util/clue_generator.dart';
+import 'package:sherlock/model/clues/generic_clue.dart';
+import 'package:sherlock/model/game_field.dart';
+import 'package:sherlock/model/game_line.dart';
+import 'package:sherlock/model/puzzle_description.dart';
+import 'package:sherlock/util/board_solver.dart';
+import 'package:sherlock/util/clue_generator.dart';
 
 @Injectable()
 class GameService {

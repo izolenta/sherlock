@@ -1,5 +1,5 @@
-import 'package:untitled/model/clues/clue_item.dart';
-import 'package:untitled/model/game_field.dart';
+import 'package:sherlock/model/clues/clue_item.dart';
+import 'package:sherlock/model/game_field.dart';
 
 abstract class GenericClue {
   String get description;
