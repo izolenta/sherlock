@@ -2,11 +2,15 @@ import 'dart:math';
 import 'package:untitled/model/clues/clue_item.dart';
 import 'package:untitled/model/clues/generic_clue.dart';
 import 'package:untitled/model/game_field.dart';
+import 'package:untitled/model/game_state.dart';
 
 class TwoNotInSameColumnClue extends GenericClue {
 
   ClueItem first;
   ClueItem second;
+
+  @override
+  int get sortOrder => 5;
 
   @override
   String get description => "These two items should NOT be placed in same column";
@@ -27,10 +31,21 @@ class TwoNotInSameColumnClue extends GenericClue {
   }
 
   @override
-  int get sortOrder => 5;
-  @override
   bool applyToField(GameField board) {
-    // TODO: implement applyToField
+    bool isApplied = false;
+    for (int i=0; i<6; i++) {
+      GameState firstState = board.getCell(first.line, i).currentState;
+      GameState secondState = board.getCell(second.line, i).currentState;
+      if (firstState.isResolvedTo(first.number) && secondState.hasPossibleItem(second.number)) {
+        secondState.removeItem(second.number);
+        isApplied = true;
+      }
+      if (secondState.isResolvedTo(second.number) && firstState.hasPossibleItem(first.number)) {
+        firstState.removeItem(first.number);
+        isApplied = true;
+      }
+    }
+    return isApplied;
   }
 
   bool operator(clue) {

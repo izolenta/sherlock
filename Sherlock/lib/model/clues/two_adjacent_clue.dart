@@ -34,7 +34,7 @@ class TwoAdjacentClue extends GenericClue {
 
   @override
   bool applyToField(GameField board) {
-    return checkAdjacent(first, second, board) && checkAdjacent(second, first, board);
+    return checkAdjacent(first, second, board) || checkAdjacent(second, first, board);
   }
 
   bool checkAdjacent(ClueItem first, ClueItem second, GameField board) {

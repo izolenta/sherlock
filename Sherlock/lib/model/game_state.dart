@@ -39,6 +39,24 @@ class GameState implements Cloneable {
     return _state & pow(2, item) != 0;
   }
 
+  bool isResolvedTo(int item) {
+    return _state == pow(2, item);
+  }
+
+  void resolveWith(int item) {
+    _checkItem(item);
+    state = pow(2, item);
+  }
+
+  int getResolvedValue() {
+    for (int i=0; i<6; i++) {
+      if (_state & pow(2, i) != 0) {
+        return i;
+      }
+    }
+    throw "Bad state";
+  }
+
   void _checkItem(int item) {
     if (item < 0 || item > 5) {
       throw "Wrong item to resolve";

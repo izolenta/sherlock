@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:untitled/model/clues/clue_item.dart';
 import 'package:untitled/model/clues/generic_clue.dart';
 import 'package:untitled/model/game_field.dart';
+import 'package:untitled/model/game_state.dart';
 
 class TwoWithNoThirdAtCenterClue extends GenericClue {
 
@@ -10,10 +11,10 @@ class TwoWithNoThirdAtCenterClue extends GenericClue {
   ClueItem third;
 
   @override
-  String get description =>  "First and third items should be placed adjacent to some other item, they can be reversed, and center item should NOT be second one";
+  int get sortOrder => 6;
 
   @override
-  int get sortOrder => 6;
+  String get description =>  "First and third items should be placed adjacent to some other item, they can be reversed, and center item should NOT be second one";
 
   TwoWithNoThirdAtCenterClue.generate(GameField board) : super.generate(board) {
     Random random = new Random();
@@ -45,7 +46,36 @@ class TwoWithNoThirdAtCenterClue extends GenericClue {
 
   @override
   bool applyToField(GameField board) {
-    // TODO: implement applyToField
+    return _checkSpaced(first, second, third, board) || _checkSpaced(second, first, third, board);
+  }
+
+  bool _checkSpaced(ClueItem first, ClueItem second, ClueItem centered, GameField board) {
+    bool isApplied = false;
+    for (int i=0; i<6; i++) {
+      GameState stateFirst = board.getCell(first.line, i).currentState;
+      if (stateFirst.hasPossibleItem(first.number)) {
+        bool adjacentFound = false;
+        if (i > 1) {
+          GameState stateThird = board.getCell(third.line, i-1).currentState;
+          GameState stateSecond = board.getCell(second.line, i-2).currentState;
+          if (stateSecond.hasPossibleItem(second.number) && !stateThird.isResolvedTo(third.number)) {
+            adjacentFound = true;
+          }
+        }
+        if (!adjacentFound && i < 4) {
+          GameState stateSecond = board.getCell(second.line, i+2).currentState;
+          GameState stateThird = board.getCell(third.line, i+1).currentState;
+          if (stateSecond.hasPossibleItem(second.number) && !stateThird.isResolvedTo(third.number)) {
+            adjacentFound = true;
+          }
+        }
+        if (!adjacentFound) {
+          stateFirst.removeItem(first.number);
+          isApplied = true;
+        }
+      }
+    }
+    return isApplied;
   }
 
   bool operator ==(clue) {

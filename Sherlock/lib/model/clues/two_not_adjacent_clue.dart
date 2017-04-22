@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:untitled/model/clues/clue_item.dart';
 import 'package:untitled/model/clues/generic_clue.dart';
 import 'package:untitled/model/game_field.dart';
+import 'package:untitled/model/game_state.dart';
 
 class TwoNotAdjacentClue extends GenericClue {
 
@@ -37,7 +38,31 @@ class TwoNotAdjacentClue extends GenericClue {
 
   @override
   bool applyToField(GameField board) {
-    // TODO: implement applyToField
+    return _checkNotAdjacent(first, second, board) || _checkNotAdjacent(second, first, board);
+  }
+
+  bool _checkNotAdjacent(ClueItem first, ClueItem second, GameField board) {
+    bool isApplied = false;
+    for (int i=0; i<6; i++) {
+      GameState stateFirst = board.getCell(first.line, i).currentState;
+      if (stateFirst.isResolvedTo(first.number)) {
+        if (i > 0) {
+          GameState stateSecond = board.getCell(second.line, i - 1).currentState;
+          if (stateSecond.hasPossibleItem(second.number)) {
+            stateSecond.removeItem(second.number);
+            isApplied = true;
+          }
+        }
+        if (i < 5) {
+          GameState stateSecond = board.getCell(second.line, i + 1).currentState;
+          if (stateSecond.hasPossibleItem(second.number)) {
+            stateSecond.removeItem(second.number);
+            isApplied = true;
+          }
+        }
+      }
+    }
+    return isApplied;
   }
 
   bool operator ==(clue) {

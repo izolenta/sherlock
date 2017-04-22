@@ -7,6 +7,7 @@ class GameField implements Cloneable {
   List<GameLine> _lines = [];
 
   List<GameLine> get lines => _lines;
+  bool get isResolved => getNotResolvedCellCount() == 0;
 
   GameField.initial() {
     _lines.clear();
@@ -29,6 +30,26 @@ class GameField implements Cloneable {
   @override
   Cloneable clone() {
     return new GameField.fromArray(lines);
+  }
+
+  int getNotResolvedCellCount() {
+    num result = 0;
+    for (int i=0; i<6; i++) {
+      for (int j=0; j<6; j++) {
+        if (!getCell(i, j).currentState.isResolved) {
+          result++;
+        }
+      }
+    }
+    return result;
+  }
+
+  void optimizeBoard() {
+    //printCorrectState();
+    int cnt=0;
+    for (var line in lines) {
+      line.optimizeLine(cnt++);
+    }
   }
 
   void printCorrectState() {

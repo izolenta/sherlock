@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:untitled/model/game_cell.dart';
+import 'package:untitled/model/game_state.dart';
 import 'package:untitled/util/cloneable.dart';
 
 class GameLine implements Cloneable {
@@ -32,6 +33,56 @@ class GameLine implements Cloneable {
       result[newPosition] = temp;
     }
     return result;
+  }
+
+  void optimizeLine([lineNumber = -1]) {
+    for (int i=0; i<6; i++) {
+      int foundAt = _findOnlyPossiblePositionAtLine(i);
+      if (foundAt != -1) {
+        GameState state = _cells[foundAt].currentState;
+        if (!state.isResolved) {
+          if (_cells[foundAt].correctItem != i) {
+            print("Resolution at line $lineNumber, pos $foundAt should be ${_cells[foundAt].correctItem}, but asked to be $i");
+            throw("BAD RESOLUTION!");
+          }
+          state.resolveWith(i);
+        }
+      }
+    }
+    for (int i=0; i<6; i++) {
+      if (_cells[i].currentState.isResolved) {
+        for (int j=0; j<6; j++) {
+          if (j != i) {
+            removeItemAndCheckResolved(j, _cells[i].currentState.getResolvedValue(), lineNumber);
+          }
+        }
+      }
+    }
+  }
+
+  int _findOnlyPossiblePositionAtLine(int item) {
+    int position = -1;
+    for (int i=0; i<6; i++) {
+      if (_cells[i].currentState.hasPossibleItem(item)) {
+        if (position == -1) {
+          position = i;
+        }
+        else {
+          return -1;
+        }
+      }
+    }
+    return position;
+  }
+
+  void removeItemAndCheckResolved(int position, int item, int lineNumber) {
+    GameState state = _cells[position].currentState;
+    if (state.hasPossibleItem(item)) {
+      state.removeItem(item);
+      if (state.isResolved) {
+        optimizeLine(lineNumber);
+      }
+    }
   }
 
   @override
