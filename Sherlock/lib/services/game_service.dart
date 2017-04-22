@@ -25,8 +25,8 @@ class GameService {
     _currentField = _currentPuzzle.board;
     turns = [];
 
-    print("Clues total: ${currentRuleSet.length}");
-    print("Opened cells total: ${currentBoard.openedCells}");
+//    print("Clues total: ${currentRuleSet.length}");
+//    print("Opened cells total: ${currentBoard.openedCells}");
   }
 
   PuzzleDescription _generateRuleSet(GameField field, int id) {

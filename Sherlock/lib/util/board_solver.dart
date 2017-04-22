@@ -9,25 +9,25 @@ class BoardSolver {
       for (GenericClue clue in clues) {
         if (clue.applyToField(board)) {
           isApplied = true;
-          print("Clue applied: "+clue.toString());
+//          print("Clue applied: "+clue.toString());
           board.optimizeBoard();
-          board.printCurrentState();
+//          board.printCurrentState();
         }
       }
       step++;
       if (isApplied) {
         if (board.isResolved) {
-          print("RESOLVED!!! in $step steps");
-          board.printCorrectState();
+//          print("RESOLVED!!! in $step steps");
+//          board.printCorrectState();
           break;
         }
         else {
-          print("Step $step, Continuing...");
+//          print("Step $step, Continuing...");
         }
       }
       else
       {
-        print("Shit happens, no solution there. Steps: $step");
+//        print("Shit happens, no solution there. Steps: $step");
         break;
       }
     }

@@ -1,4 +1,30 @@
-<img src="img/board-link.png" class="board-link">
-<board>
+<div class="layout-row">
+    <div class="layout-cell">
+        <div class="text-hint">Board</div>
+        <board>
 
-</board>
+        </board>
+    </div>
+    <div class="layout-cell clues-at-right">
+        <div class="text-hint">Clues</div>
+        <div *ngFor="let column of columns" class="layout-cell">
+            <horizontal-clue #horizontalClue *ngFor="let row of rows"
+                             [clue]="getClue(column*7+row)"
+            >
+            </horizontal-clue>
+
+        </div>
+    </div>
+</div>
+<div class="clues-at-bottom">
+    <div class="text-hint">Clues</div>
+    <vertical-clue #verticalClue *ngFor="let clue of verticalClues"
+                   [clue]="clue"
+    >
+    </vertical-clue>
+    <div class="buttons">
+        <button (click)="restartGame()">Start New</button>
+        <button>Undo</button>
+        <button>Difficulty: Easy</button>
+    </div>
+</div>

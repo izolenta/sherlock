@@ -41,10 +41,10 @@ class GameLine implements Cloneable {
       if (foundAt != -1) {
         GameState state = _cells[foundAt].currentState;
         if (!state.isResolved) {
-          if (_cells[foundAt].correctItem != i) {
-            print("Resolution at line $lineNumber, pos $foundAt should be ${_cells[foundAt].correctItem}, but asked to be $i");
-            throw("BAD RESOLUTION!");
-          }
+//          if (_cells[foundAt].correctItem != i) {
+//            print("Resolution at line $lineNumber, pos $foundAt should be ${_cells[foundAt].correctItem}, but asked to be $i");
+//            throw("BAD RESOLUTION!");
+//          }
           state.resolveWith(i);
         }
       }

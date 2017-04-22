@@ -3,6 +3,8 @@
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Material+Icons);
+@import url(https://fonts.googleapis.com/css?family=Coming+Soon);
+
 
 body {
   display: block;
@@ -32,6 +34,12 @@ body {
   width: 32px;
   height: 32px;
 }
+
+.sprite.middle {
+  width: 48px;
+  height: 48px;
+}
+
 .sprite.s00 {background-position: 0 0}
 .sprite.s10 {background-position: 0 20%}
 .sprite.s20 {background-position: 0 40%}
