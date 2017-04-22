@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:untitled/model/clues/clue_item.dart';
 import 'package:untitled/model/clues/generic_clue.dart';
 import 'package:untitled/model/game_field.dart';
+import 'package:untitled/model/game_state.dart';
 
 class OneShouldBeBeforeOtherClue extends GenericClue {
 
@@ -28,10 +29,46 @@ class OneShouldBeBeforeOtherClue extends GenericClue {
 
   @override
   bool applyToField(GameField board) {
-    // TODO: implement applyToField
+    bool isApplied = false;
+    int mostLeft = 0;
+    int mostRight = 5;
+    for (int i=0; i<6; i++) {
+      GameState next = board.getCell(first.line, i).currentState;
+      if (next.hasPossibleItem(first.number)) {
+        mostLeft = i;
+        break;
+      }
+    }
+    for (int i=5; i>-1; i--) {
+      GameState next = board.getCell(second.line, i).currentState;
+      if (next.hasPossibleItem(second.number)) {
+        mostRight = i;
+        break;
+      }
+    }
+    for (int i=0; i<=mostLeft; i++) {
+      GameState next = board.getCell(second.line, i).currentState;
+      if (next.hasPossibleItem(second.number)) {
+        next.removeItem(second.number);
+        isApplied = true;
+      }
+    }
+    for (int i=5; i>=mostRight; i--) {
+      GameState next = board.getCell(first.line, i).currentState;
+      if (next.hasPossibleItem(first.number)) {
+        next.removeItem(first.number);
+        isApplied = true;
+      }
+    }
+    return isApplied;
   }
 
   bool operator ==(clue) {
     return clue is OneShouldBeBeforeOtherClue && first == clue.first && second == clue.second;
+  }
+
+  @override
+  String toString() {
+    return "OneShouldBeBeforeOther: ${first.line}:${first.number}, ${second.line}:${second.number}";
   }
 }

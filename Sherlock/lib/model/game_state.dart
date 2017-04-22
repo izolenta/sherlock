@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:untitled/util/cloneable.dart';
 
 class GameState implements Cloneable {
@@ -27,5 +28,23 @@ class GameState implements Cloneable {
 
   void resetToInitialState() {
     state = GameState.initialState;
+  }
+
+  void removeItem(int item) {
+    _checkItem(item);
+    state = state - pow(2, item);
+  }
+
+  bool hasPossibleItem(int item) {
+    return _state & pow(2, item) != 0;
+  }
+
+  void _checkItem(int item) {
+    if (item < 0 || item > 5) {
+      throw "Wrong item to resolve";
+    }
+    if (!hasPossibleItem(item)) {
+      throw "this cell does not contain the item!";
+    }
   }
 }

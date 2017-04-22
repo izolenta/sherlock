@@ -21,15 +21,12 @@ void generateBoard() {
   print('-------------------------');
   List<GenericClue> clues = ClueGenerator.generateClueSet(field);
 
-  ThreeAdjacentClue clue1 = new ThreeAdjacentClue.generate(field);
-  ThreeAdjacentClue clue2 = new ThreeAdjacentClue.generate(field);
+  field.printCurrentState();
 
-  clue1.first = new ClueItem(11, 22);
-  clue1.second = new ClueItem(11, 33);;
-  clue1.third = new ClueItem(11, 44);;
-  clue2.first = new ClueItem(11, 22);
-  clue2.second = new ClueItem(11, 33);;
-  clue2.third = new ClueItem(11, 44);;
-
-  print (clue1 == clue2);
+  for (GenericClue clue in clues) {
+    if (clue.applyToField(field)) {
+      print("Clue applied: "+clue.toString());
+      field.printCurrentState();
+    }
+  }
 }

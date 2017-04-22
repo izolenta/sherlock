@@ -12,14 +12,14 @@ class ClueGenerator {
   static List<GenericClue> generateClueSet(GameField board) {
 
     List<GenericClue> clues = [];
-    for (int i=0; i<15; i++) {
-      TwoInSameColumnClue clue;
-      do {
-        clue = new TwoInSameColumnClue.generate(board);
-      } while (clues.contains(clue));
-      clues.add(clue);
-      print("${clue.first.line}${clue.first.number} same column ${clue.second.line}${clue.second.number}");
-    }
+//    for (int i=0; i<15; i++) {
+//      TwoInSameColumnClue clue;
+//      do {
+//        clue = new TwoInSameColumnClue.generate(board);
+//      } while (clues.contains(clue));
+//      clues.add(clue);
+//      print("${clue.first.line}${clue.first.number} same column ${clue.second.line}${clue.second.number}");
+//    }
     for (int i=0; i<15; i++) {
       TwoAdjacentClue clue;
       do {
@@ -44,30 +44,30 @@ class ClueGenerator {
       clues.add(clue);
       print("${clue.first.line}${clue.first.number}, ${clue.third.line}${clue.third.number}, ${clue.second.line}${clue.second.number} are adjacent");
     }
-    for (int i=0; i<5; i++) {
-      TwoNotAdjacentClue clue;
-      do {
-        clue = new TwoNotAdjacentClue.generate(board);
-      } while (clues.contains(clue));
-      clues.add(clue);
-      print("${clue.first.line}${clue.first.number} not adjacent to ${clue.second.line}${clue.second.number}");
-    }
-    for (int i=0; i<5; i++) {
-      TwoNotInSameColumnClue clue;
-      do {
-        clue = new TwoNotInSameColumnClue.generate(board);
-      } while (clues.contains(clue));
-      clues.add(clue);
-      print("${clue.first.line}${clue.first.number} not in column with ${clue.second.line}${clue.second.number}");
-    }
-    for (int i=0; i<5; i++) {
-      TwoWithNoThirdAtCenterClue clue;
-      do {
-        clue = new TwoWithNoThirdAtCenterClue.generate(board);
-      } while (clues.contains(clue));
-      clues.add(clue);
-      print("${clue.first.line}${clue.first.number} - (X${clue.third.line}${clue.third.number}X) - ${clue.second.line}${clue.second.number}");
-    }
+//    for (int i=0; i<5; i++) {
+//      TwoNotAdjacentClue clue;
+//      do {
+//        clue = new TwoNotAdjacentClue.generate(board);
+//      } while (clues.contains(clue));
+//      clues.add(clue);
+//      print("${clue.first.line}${clue.first.number} not adjacent to ${clue.second.line}${clue.second.number}");
+//    }
+//    for (int i=0; i<5; i++) {
+//      TwoNotInSameColumnClue clue;
+//      do {
+//        clue = new TwoNotInSameColumnClue.generate(board);
+//      } while (clues.contains(clue));
+//      clues.add(clue);
+//      print("${clue.first.line}${clue.first.number} not in column with ${clue.second.line}${clue.second.number}");
+//    }
+//    for (int i=0; i<5; i++) {
+//      TwoWithNoThirdAtCenterClue clue;
+//      do {
+//        clue = new TwoWithNoThirdAtCenterClue.generate(board);
+//      } while (clues.contains(clue));
+//      clues.add(clue);
+//      print("${clue.first.line}${clue.first.number} - (X${clue.third.line}${clue.third.number}X) - ${clue.second.line}${clue.second.number}");
+//    }
     return clues;
   }
 }

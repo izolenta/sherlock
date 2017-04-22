@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:untitled/model/clues/clue_item.dart';
 import 'package:untitled/model/clues/generic_clue.dart';
 import 'package:untitled/model/game_field.dart';
+import 'package:untitled/model/game_state.dart';
 
 class ThreeAdjacentClue extends GenericClue {
 
@@ -39,7 +40,54 @@ class ThreeAdjacentClue extends GenericClue {
 
   @override
   bool applyToField(GameField board) {
-    // TODO: implement applyToField
+    bool isApplied = _checkCenterItemNotAtBounds(third, board);
+    isApplied = isApplied || _checkThreeAdjacent(first, second, third, board);
+    isApplied = isApplied || _checkThreeAdjacent(second, first, third, board);
+    return isApplied;
+  }
+
+  bool _checkCenterItemNotAtBounds(ClueItem center, GameField board) {
+    bool isApplied = false;
+    GameState stateThird = board.getCell(center.line, 0).currentState;
+    if (stateThird.hasPossibleItem(center.number)) {
+      stateThird.removeItem(center.number);
+      isApplied = true;
+    }
+    stateThird = board.getCell(center.line, 5).currentState;
+    if (stateThird.hasPossibleItem(center.number)) {
+      stateThird.removeItem(center.number);
+      isApplied = true;
+    }
+    return isApplied;
+  }
+
+  bool _checkThreeAdjacent(ClueItem first, ClueItem second, ClueItem centered, GameField board) {
+    bool isApplied = false;
+    for (int i=0; i<6; i++) {
+      GameState stateFirst = board.getCell(first.line, i).currentState;
+      if (stateFirst.hasPossibleItem(first.number)) {
+        bool adjacentFound = false;
+        if (i > 1) {
+          GameState stateThird = board.getCell(third.line, i-1).currentState;
+          GameState stateSecond = board.getCell(second.line, i-2).currentState;
+          if (stateSecond.hasPossibleItem(second.number) && stateThird.hasPossibleItem(third.number)) {
+            adjacentFound = true;
+          }
+        }
+        if (!adjacentFound && i < 4) {
+          GameState stateSecond = board.getCell(second.line, i+2).currentState;
+          GameState stateThird = board.getCell(third.line, i+1).currentState;
+          if (stateSecond.hasPossibleItem(second.number) && stateThird.hasPossibleItem(third.number)) {
+            adjacentFound = true;
+          }
+        }
+        if (!adjacentFound) {
+          stateFirst.removeItem(first.number);
+          isApplied = true;
+        }
+      }
+    }
+    return isApplied;
   }
 
   bool operator ==(clue) {
@@ -47,4 +95,10 @@ class ThreeAdjacentClue extends GenericClue {
         && clue.third ==  third
         && equalsPair([clue.first, clue.second], [first, second]);
   }
+
+  @override
+  String toString() {
+    return "ThreeAdjacent: ${first.line}:${first.number}, ${third.line}:${third.number}, ${second.line}:${second.number}";
+  }
+
 }

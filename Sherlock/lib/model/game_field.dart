@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:untitled/model/game_cell.dart';
 import 'package:untitled/model/game_line.dart';
 import 'package:untitled/util/cloneable.dart';
@@ -42,5 +43,27 @@ class GameField implements Cloneable {
               "$cnt${line.cells[5].correctItem}");
       cnt++;
     }
+  }
+
+  void printCurrentState() {
+    for (GameLine line in lines) {
+      print(
+          "${_getArray(line.cells[0].currentState.state)} "
+              "${_getArray(line.cells[1].currentState.state)} "
+              "${_getArray(line.cells[2].currentState.state)} "
+              "${_getArray(line.cells[3].currentState.state)} "
+              "${_getArray(line.cells[4].currentState.state)} "
+              "${_getArray(line.cells[5].currentState.state)}");
+    }
+  }
+
+  List<int> _getArray(int state) {
+    List<int> result = [];
+    for (int i=0; i<6; i++) {
+      if (state & pow(2, i) != 0) {
+        result.add(i);
+      }
+    }
+    return result;
   }
 }
