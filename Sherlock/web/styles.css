@@ -80,8 +80,10 @@ body {
   height: 0.25em;
   position: relative;
   width: 26em;
-  left: 97px;
+  left: -75px;
+  top: -120px;
 }
+
 .progress-bar {
   background-size: 26em 0.25em;
   height: 100%;
