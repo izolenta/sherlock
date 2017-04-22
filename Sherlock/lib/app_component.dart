@@ -3,14 +3,24 @@
 
 import 'package:angular2/core.dart';
 import 'package:angular2_components/angular2_components.dart';
+import 'package:untitled/components/game_field_component/game_field_component.dart';
+import 'package:untitled/services/game_service.dart';
 
 @Component(
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives],
-  providers: const [materialProviders],
+  directives: const [materialDirectives, GameFieldComponent],
+  providers: const [materialProviders, GameService],
 )
-class AppComponent {
-  // Nothing here yet. All logic is in HelloDialog.
+class AppComponent implements OnInit {
+
+  final GameService _gameService;
+
+  AppComponent(this._gameService);
+
+  @override
+  void ngOnInit() {
+    _gameService.initRandomConfiguration();
+  }
 }
