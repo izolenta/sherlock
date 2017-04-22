@@ -1,0 +1,38 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "dart:math",
+        "5": false
+      },
+      {
+        "1": "package:untitled/model/clues/clue_item.dart",
+        "5": false
+      },
+      {
+        "1": "package:untitled/model/clues/generic_clue.dart",
+        "5": false
+      },
+      {
+        "1": "package:untitled/model/game_field.dart",
+        "5": false
+      },
+      {
+        "1": "package:untitled/model/game_state.dart",
+        "5": false
+      }
+    ],
+    "6": "two_in_same_column_clue.dart"
+  },
+  "type": {
+    "TwoInSameColumnClue": {
+      "class": "Identifier",
+      "name": "TwoInSameColumnClue",
+      "moduleUrl": "asset:untitled/lib/model/clues/two_in_same_column_clue.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}

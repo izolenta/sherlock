@@ -1,0 +1,13 @@
+{
+  "ngDeps": null,
+  "type": {
+    "ClueItem": {
+      "class": "Identifier",
+      "name": "ClueItem",
+      "moduleUrl": "asset:untitled/lib/model/clues/clue_item.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}
