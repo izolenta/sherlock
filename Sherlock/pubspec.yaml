@@ -11,12 +11,14 @@ dependencies:
   angular2: '>=2.2.0 <2.3.0'
   angular2_components: ^0.2.2
   test: ^0.12.18+1
+  less_dart: ^1.0.0
 
 dev_dependencies:
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
 
 transformers:
+- less_dart
 - angular2:
     platform_directives:
     - 'package:angular2/common.dart#COMMON_DIRECTIVES'

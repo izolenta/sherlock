@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:angular2/angular2.dart';
 import 'package:untitled/model/clues/generic_clue.dart';
 import 'package:untitled/model/game_field.dart';
 import 'package:untitled/model/game_line.dart';
@@ -6,6 +7,7 @@ import 'package:untitled/model/puzzle_description.dart';
 import 'package:untitled/util/board_solver.dart';
 import 'package:untitled/util/clue_generator.dart';
 
+@Injectable()
 class GameService {
   PuzzleDescription _currentPuzzle;
   PuzzleDescription get currentPuzzle => _currentPuzzle;
@@ -22,18 +24,25 @@ class GameService {
     _currentPuzzle = _generateRuleSet(new GameField.initial(), 0);
     _currentField = _currentPuzzle.board;
     turns = [];
+
+    print("Clues total: ${currentRuleSet.length}");
+    print("Opened cells total: ${currentBoard.openedCells}");
   }
 
   PuzzleDescription _generateRuleSet(GameField field, int id) {
     List<GenericClue> clues;
     GameField fieldClone;
-//    _openRandomCell(field);
-//    _openRandomCell(field);
+    _openRandomCell(field);
+    _openRandomCell(field);
+    _openRandomCell(field);
+    _openRandomCell(field);
+    _openRandomCell(field);
     while(true) {
       clues = ClueGenerator.generateClueSet(field);
       fieldClone = field.clone();
       int opened = _checkOpenedCells(fieldClone, clues);
-      if (opened <= 2 && clues != null) {
+      if (opened <= 2) {
+        clues = _shrinkClues(fieldClone, clues);
         break;
       }
     }
@@ -47,6 +56,20 @@ class GameService {
 
     PuzzleDescription descr = new PuzzleDescription(id, result, clues);
     return descr;
+  }
+
+  List<GenericClue> _shrinkClues(GameField field, List<GenericClue> clues) {
+    for (var i = clues.length-1; i>=0; i--) {
+      GameField fieldClone = field.clone();
+      List<GenericClue> cluesClone = clues.toList();
+      cluesClone.removeAt(i);
+      BoardSolver.trySolve(fieldClone, cluesClone);
+      if (fieldClone.getNotResolvedCellCount() == 0) {
+        List<GenericClue> next = _shrinkClues(field, cluesClone);
+        return next?? cluesClone;
+      }
+    }
+    return null;
   }
 
   int _checkOpenedCells(GameField field, List<GenericClue> clues) {
