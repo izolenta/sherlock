@@ -1,0 +1,7 @@
+<div *ngFor="let row of rows" class="unresolved-line">
+    <div *ngFor="let number of numbers"
+         class="unresolved-cell sprite small"
+         [ngClass]="getClass(number+(row-1)*3)"
+    >
+    </div>
+</div>

@@ -1,4 +1,8 @@
 <div *ngFor="let line of field.lines" class="board-line">
-    <board-cell *ngFor="let cell of line.cells">
+    <board-cell *ngFor="let cell of line.cells"
+        [cellData]="cell"
+        [line]="field.lines.indexOf(line)"
+        [position]="line.cells.indexOf(cell)"
+    >
     </board-cell>
 </div>

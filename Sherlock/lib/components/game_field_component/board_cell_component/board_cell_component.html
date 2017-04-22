@@ -1,3 +1,8 @@
-<resolved-board-cell class="sprite large" [ngClass]="getResolvedClass()">
+<resolved-board-cell class="sprite large" [ngClass]="getResolvedClass()" *ngIf="isResolved">
 
 </resolved-board-cell>
+<unresolved-board-cell *ngIf="!isResolved"
+                       [line]="line"
+                       [position]="position"
+>
+</unresolved-board-cell>
