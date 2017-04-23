@@ -4,6 +4,7 @@ import 'package:angular_components/angular_components.dart';
 import 'package:sherlock/components/game_field_component/board_cell_component/horizontal_clue_component/horizontal_clue_component.dart';
 import 'package:sherlock/components/game_field_component/board_cell_component/vertical_clue_component/vertical_clue_component.dart';
 import 'package:sherlock/components/game_field_component/board_component/board_component.dart';
+import 'package:sherlock/components/game_field_component/help_component/help_component.dart';
 import 'package:sherlock/model/clues/generic_clue.dart';
 import 'package:sherlock/model/clues/one_should_be_before_other_clue.dart';
 import 'package:sherlock/model/clues/three_adjacent_clue.dart';
@@ -20,10 +21,12 @@ import 'package:sherlock/services/sound_service.dart';
     styleUrls: const ['game_field_component.css'],
     templateUrl: 'game_field_component.html',
     directives: const [
+      NgIf,
       BoardComponent,
       VerticalClueComponent,
       HorizontalClueComponent,
-      MaterialDialogComponent
+      MaterialDialogComponent,
+      HelpComponent
     ]
 )
 class GameFieldComponent {
@@ -44,6 +47,8 @@ class GameFieldComponent {
   String _undoText = UNDO_TEXT_NORMAL;
 
   String get undoButtonText => _undoText;
+
+  bool isHelpDisplayed = true;
 
   bool get winningState => _gameService.winningState;
   bool get losingState => _gameService.losingState;
@@ -125,4 +130,7 @@ class GameFieldComponent {
     return clue?.used?? false;
   }
 
+  void toggleDisplayHelp() {
+    isHelpDisplayed = !isHelpDisplayed;
+  }
 }

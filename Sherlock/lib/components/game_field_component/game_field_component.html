@@ -1,43 +1,57 @@
-<div class="layout-row">
-    <div class="layout-cell">
-        <div class="text-hint">Board</div>
-        <board>
+<div *ngIf="!isHelpDisplayed">
+    <div class="layout-row">
+        <div class="layout-cell">
+            <div class="text-hint">Board</div>
+            <board>
 
-        </board>
-    </div>
-    <div class="layout-cell clues-at-right">
-        <div class="text-hint">Clues</div>
-        <div *ngFor="let column of columns" class="layout-cell">
-            <horizontal-clue #horizontalClue *ngFor="let row of rows"
-                             [clue]="getClue(column*7+row)"
-                             (contextmenu)="changeUsage(getClue(column*7+row)); $event.preventDefault()"
-                             [ngClass]="{used: isUsed(getClue(column*7+row))}"
-            >
-            </horizontal-clue>
+            </board>
+        </div>
+        <div class="layout-cell clues-at-right">
+            <div class="text-hint">Clues</div>
+            <div *ngFor="let column of columns" class="layout-cell">
+                <horizontal-clue #horizontalClue *ngFor="let row of rows"
+                                 [clue]="getClue(column*7+row)"
+                                 (contextmenu)="changeUsage(getClue(column*7+row)); $event.preventDefault()"
+                                 [ngClass]="{used: isUsed(getClue(column*7+row))}"
+                >
+                </horizontal-clue>
 
+            </div>
         </div>
     </div>
-</div>
-<div class="clues-at-bottom">
-    <div class="text-hint">Clues</div>
-    <vertical-clue #verticalClue *ngFor="let clue of verticalClues"
-                   [clue]="clue"
-                   (contextmenu)="changeUsage(clue); $event.preventDefault()"
-                   [ngClass]="{used: isUsed(clue)}"
-    >
-    </vertical-clue>
-    <div class="buttons">
-        <button (click)="restartGame()">Start New</button>
-        <button (click)="undo()">Undo step</button>
-        <button (click)="undoToLastKnownGood()">{{undoButtonText}}</button>
-        <button (click)="changeDifficulty()">Difficulty: {{difficultyString}}</button>
+    <div class="clues-at-bottom">
+        <div class="text-hint">Clues</div>
+        <vertical-clue #verticalClue *ngFor="let clue of verticalClues"
+                       [clue]="clue"
+                       (contextmenu)="changeUsage(clue); $event.preventDefault()"
+                       [ngClass]="{used: isUsed(clue)}"
+        >
+        </vertical-clue>
+        <div class="buttons">
+            <button (click)="restartGame()">Start New</button>
+            <button (click)="undo()">Undo step</button>
+            <button (click)="undoToLastKnownGood()">{{undoButtonText}}</button>
+            <button (click)="changeDifficulty()">Difficulty: {{difficultyString}}</button>
+        </div>
     </div>
+    <img class="static-help" src="img/help.png"
+         (click)="toggleDisplayHelp()"
+    >
+    <material-dialog #modalWin *ngIf="winningState" class="winningModal">
+        <div class="winningModalText">Congratulations, you won!</div>
+        <div class="winningModalSubText">Press 'Start New' or change Difficulty</div>
+    </material-dialog>
+    <material-dialog #modalWin *ngIf="losingState" class="winningModal">
+        <div class="winningModalText">No, it's wrong.</div>
+        <div class="winningModalSubText">Press 'Undo to Last Correct' and try again.</div>
+</material-dialog>
 </div>
-<material-dialog #modalWin *ngIf="winningState" class="winningModal">
-    <div class="winningModalText">Congratulations, you won!</div>
-    <div class="winningModalSubText">Press 'Start New' or change Difficulty</div>
-</material-dialog>
-<material-dialog #modalWin *ngIf="losingState" class="winningModal">
-    <div class="winningModalText">No, it's wrong.</div>
-    <div class="winningModalSubText">Press 'Undo to Last Correct' and try again.</div>
-</material-dialog>
+<div *ngIf="isHelpDisplayed">
+    <help
+        (help-closed)="toggleDisplayHelp()"
+        >
+    </help>
+    <img class="static-help" src="img/back.png"
+         (click)="toggleDisplayHelp()"
+    >
+</div>
