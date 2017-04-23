@@ -8,7 +8,7 @@
     <img src="img/arrows-2x2.png" class="arrows" *ngIf="needToDisplayArrows2()">
 </div>
 
-<material-tooltip-card *ngIf="!isUsed"
+<material-tooltip-card *ngIf="!isUsed && clue != null"
         [for]="ref"
 >
     <div [innerHtml]="formattedDescription" class="tooltipped">

@@ -97,7 +97,17 @@ class GameFieldComponent {
     if (_gameService.difficulty < 0) {
       _gameService.difficulty = 2;
     }
-
     _gameService.initRandomConfiguration();
   }
+
+  void changeUsage(GenericClue clue) {
+    if (clue != null) {
+      clue.used = !clue.used;
+    }
+  }
+
+  bool isUsed(GenericClue clue) {
+    return clue?.used?? false;
+  }
+
 }
