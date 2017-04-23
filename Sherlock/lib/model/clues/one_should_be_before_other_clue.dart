@@ -13,7 +13,7 @@ class OneShouldBeBeforeOtherClue extends GenericClue {
   int get sortOrder => 3;
 
   @override
-  String get description => "The item {0} should be placed in the column at the left (not necessarily <b>adjacent</b> left) of {1}<br>"
+  String get description => "The item {0} should be placed in the column to the left (not necessarily <i>adjacent</i> left) of {1}<br>"
   "Also this means that {0} cannot be in most right column, and {1} cannot be at most left column.";
 
   OneShouldBeBeforeOtherClue.generate(GameField board) : super.generate(board) {

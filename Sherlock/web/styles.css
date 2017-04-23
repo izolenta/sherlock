@@ -78,6 +78,14 @@ body {
   top: 8px;
 }
 
+.right-click-to-hide {
+  padding-top: 16px;
+  font-size: 11px;
+  font-style: italic;
+  text-align: right;
+  display: block;
+}
+
 .sprite.s00 {background-position: 0 0}
 .sprite.s10 {background-position: 0 20%}
 .sprite.s20 {background-position: 0 40%}

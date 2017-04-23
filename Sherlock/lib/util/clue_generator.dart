@@ -9,10 +9,10 @@ import 'package:sherlock/model/clues/two_with_not_third_at_center_clue.dart';
 import 'package:sherlock/model/game_field.dart';
 
 class ClueGenerator {
-  static List<GenericClue> generateClueSet(GameField board) {
+  static List<GenericClue> generateClueSet(GameField board, int difficulty) {
 
     List<GenericClue> clues = [];
-    for (int i=0; i<15; i++) {
+    for (int i=0; i<10 + difficulty * 4; i++) {
       TwoInSameColumnClue clue;
       do {
         clue = new TwoInSameColumnClue.generate(board);
@@ -20,7 +20,7 @@ class ClueGenerator {
       clues.add(clue);
 //      print("${clue.first.line}${clue.first.number} same column ${clue.second.line}${clue.second.number}");
     }
-    for (int i=0; i<15; i++) {
+    for (int i=0; i<10; i++) {
       TwoAdjacentClue clue;
       do {
         clue = new TwoAdjacentClue.generate(board);
@@ -60,14 +60,14 @@ class ClueGenerator {
       clues.add(clue);
 //      print("${clue.first.line}${clue.first.number} not in column with ${clue.second.line}${clue.second.number}");
     }
-    for (int i=0; i<5; i++) {
-      TwoWithNoThirdAtCenterClue clue;
-      do {
-        clue = new TwoWithNoThirdAtCenterClue.generate(board);
-      } while (clues.contains(clue));
-      clues.add(clue);
-//      print("${clue.first.line}${clue.first.number} - (X${clue.third.line}${clue.third.number}X) - ${clue.second.line}${clue.second.number}");
-    }
+//    for (int i=0; i<5; i++) {
+//      TwoWithNoThirdAtCenterClue clue;
+//      do {
+//        clue = new TwoWithNoThirdAtCenterClue.generate(board);
+//      } while (clues.contains(clue));
+//      clues.add(clue);
+////      print("${clue.first.line}${clue.first.number} - (X${clue.third.line}${clue.third.number}X) - ${clue.second.line}${clue.second.number}");
+//    }
     return clues;
   }
 }

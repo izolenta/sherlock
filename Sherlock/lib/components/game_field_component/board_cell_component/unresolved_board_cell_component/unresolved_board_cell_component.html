@@ -1,8 +1,9 @@
 <div *ngFor="let row of rows" class="unresolved-line">
-    <div *ngFor="let number of numbers"
+    <div *ngFor="let number of numbers" twolinetooltip
          class="unresolved-cell sprite small"
          [ngClass]="getClass(number+(row-1)*3)"
          (mousedown)="onClick(number+(row-1)*3, $event)"
+         materialtooltip="Left click: you concluded that this item is here<br>Right click: you concluded that this item cannot be here"
     >
     </div>
 </div>

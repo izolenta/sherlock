@@ -26,7 +26,8 @@
     </vertical-clue>
     <div class="buttons">
         <button (click)="restartGame()">Start New</button>
-        <button>Undo</button>
-        <button>Difficulty: Easy</button>
+        <button (click)="undo()">Undo step</button>
+        <button (click)="undoToLastKnownGood()">{{undoButtonText}}</button>
+        <button (click)="changeDifficulty()">Difficulty: {{difficultyString}}</button>
     </div>
 </div>

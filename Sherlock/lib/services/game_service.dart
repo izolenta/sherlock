@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:angular2/angular2.dart';
 import 'package:sherlock/model/clues/generic_clue.dart';
+import 'package:sherlock/model/game_cell.dart';
 import 'package:sherlock/model/game_field.dart';
 import 'package:sherlock/model/game_line.dart';
 import 'package:sherlock/model/puzzle_description.dart';
@@ -14,11 +15,15 @@ class GameService {
 
   GameField _currentField;
 
+  int difficulty = 2;
+
   GameField get currentField => _currentField;
   List<List<GameLine>> turns = [];
 
   GameField get currentBoard => currentPuzzle.board;
   List<GenericClue> get currentRuleSet => currentPuzzle.ruleSet;
+
+  List<List<GameLine>> _undoPositions = [];
 
   void initRandomConfiguration() {
     _currentPuzzle = _generateRuleSet(new GameField.initial(), 0);
@@ -29,21 +34,63 @@ class GameService {
 //    print("Opened cells total: ${currentBoard.openedCells}");
   }
 
+  void resolveCell(int line, int position, int item) {
+    _currentField.getCell(line, position).currentState.resolveWith(item);
+    _currentField.optimizeBoard();
+  }
+
+  void removeItem(int line, int position, int item) {
+    _currentField.getCell(line, position).currentState.removeItem(item);
+    _currentField.optimizeBoard();
+  }
+
+  void addPositionToUndo() {
+    _undoPositions.add(_currentField.lines.map((GameLine line)=> line.clone()).toList());
+  }
+
+  void undo() {
+    if (_undoPositions.isNotEmpty) {
+      _currentField = new GameField.fromArray(_undoPositions.removeLast());
+    }
+  }
+
+  bool undoToLastKnownGood() {
+    bool undoed = false;
+    while (_positionIsNotGood()) {
+      undo();
+      undoed = true;
+    }
+    return undoed;
+  }
+
+  bool _positionIsNotGood() {
+    for (int i=0; i<6; i++) {
+      for (int j = 0; j < 6; j++) {
+        GameCell cell = _currentField.getCell(i, j);
+        if (!cell.currentState.hasPossibleItem(cell.correctItem)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   PuzzleDescription _generateRuleSet(GameField field, int id) {
     List<GenericClue> clues;
     GameField fieldClone;
-//    _openRandomCell(field);
-//    _openRandomCell(field);
-//    _openRandomCell(field);
-//    _openRandomCell(field);
-    _openRandomCell(field);
+    for (int i=0; i< difficulty*3; i++) {
+      _openRandomCell(field);
+    }
     while(true) {
-      clues = ClueGenerator.generateClueSet(field);
+      clues = ClueGenerator.generateClueSet(field, difficulty);
       fieldClone = field.clone();
       int opened = _checkOpenedCells(fieldClone, clues);
       if (opened <= 2) {
         clues = _shrinkClues(fieldClone, clues);
-        break;
+        if (clues != null) {
+          _shuffleClues(clues);
+          break;
+        }
       }
     }
 
@@ -55,7 +102,18 @@ class GameService {
     //clues.sort((GenericClue a, GenericClue b) => a.sortOrder.compareTo(b.sortOrder));
 
     PuzzleDescription descr = new PuzzleDescription(id, result, clues);
+    _undoPositions.clear();
     return descr;
+  }
+
+  void _shuffleClues(List<GenericClue> clues) {
+    Random random = new Random();
+    for (var i = 0; i < clues.length; ++i) {
+      int position = random.nextInt(clues.length);
+      GenericClue temp = clues[i];
+      clues[i] = clues[position];
+      clues[position] = temp;
+    }
   }
 
   List<GenericClue> _shrinkClues(GameField field, List<GenericClue> clues) {
@@ -92,16 +150,6 @@ class GameService {
       }
     }
     return opened;
-  }
-
-  void resolveCell(int line, int position, int item) {
-    _currentField.getCell(line, position).currentState.resolveWith(item);
-    _currentField.optimizeBoard();
-  }
-
-  void removeItem(int line, int position, int item) {
-    _currentField.getCell(line, position).currentState.removeItem(item);
-    _currentField.optimizeBoard();
   }
 
   void _openRandomCell(GameField field) {

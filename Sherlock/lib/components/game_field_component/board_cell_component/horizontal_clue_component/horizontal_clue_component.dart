@@ -16,14 +16,17 @@ import 'package:sherlock/model/clues/two_with_not_third_at_center_clue.dart';
 )
 class HorizontalClueComponent implements OnChanges {
   @Input() GenericClue clue;
-  @Input() bool isUsed = false;
 
   String _formattedDescription = "";
   String get formattedDescription => _formattedDescription;
 
+  bool get isUsed => clue?.used?? false;
+
   @override
   void ngOnChanges(Map<String, SimpleChange> changes) {
-    _formatDescription();
+    if (changes.containsKey("clue") && clue != null) {
+      _formatDescription();
+    }
   }
 
   ClueItem get firstItem {
@@ -53,7 +56,7 @@ class HorizontalClueComponent implements OnChanges {
       return null;
     }
     if (clue is TwoNotAdjacentClue) {
-      return (clue as TwoNotAdjacentClue).first;
+      return null;
     }
     if (clue is OneShouldBeBeforeOtherClue) {
       return (clue as OneShouldBeBeforeOtherClue).second;
@@ -110,7 +113,7 @@ class HorizontalClueComponent implements OnChanges {
   }
 
   bool needToDisplayArrows2() {
-    return clue is TwoAdjacentClue;
+    return clue is TwoAdjacentClue || clue is TwoNotAdjacentClue;
   }
 
   bool needToDisplayDots() {

@@ -3,9 +3,10 @@
     <div class="sprite clue middle" [ngClass]="getSecondSpriteClass()"></div>
     <img src="img/cross.png" *ngIf="needToDisplayCross()">
 </span>
-<material-tooltip-card
+<material-tooltip-card *ngIf="!isUsed"
         [for]="ref"
 >
     <div [innerHtml]="formattedDescription" class="tooltipped">
     </div>
+    <div class="right-click-to-hide">(Right-click to mark this clue as used)</div>
 </material-tooltip-card>

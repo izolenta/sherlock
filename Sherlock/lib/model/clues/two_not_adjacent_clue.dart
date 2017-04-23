@@ -13,7 +13,7 @@ class TwoNotAdjacentClue extends GenericClue {
   int get sortOrder => 4;
 
   @override
-  String get description => "The first item should NOT be placed adjacent to second one";
+  String get description => "Items {0} and {2} should <i>NOT</i> be placed in adjacent columns";
 
   TwoNotAdjacentClue.generate(GameField board) : super.generate(board) {
     Random random = new Random();

@@ -14,6 +14,8 @@ import 'package:sherlock/model/clues/two_not_in_same_column_clue.dart';
 class VerticalClueComponent implements OnChanges {
   @Input() GenericClue clue;
 
+  bool get isUsed => clue?.used?? false;
+
   String _formattedDescription = "";
   String get formattedDescription => _formattedDescription;
 

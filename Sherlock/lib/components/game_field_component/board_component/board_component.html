@@ -3,6 +3,7 @@
         [cellData]="cell"
         [line]="field.lines.indexOf(line)"
         [position]="line.cells.indexOf(cell)"
+        (contextmenu)="$event.preventDefault()"
     >
     </board-cell>
 </div>

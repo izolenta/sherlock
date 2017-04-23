@@ -5,6 +5,8 @@ abstract class GenericClue {
   String get description;
   int get sortOrder;
 
+  bool used = false;
+
   GenericClue.generate(GameField board);
 
   bool applyToField(GameField board);

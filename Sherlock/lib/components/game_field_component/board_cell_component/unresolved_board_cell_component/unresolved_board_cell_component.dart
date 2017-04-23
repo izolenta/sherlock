@@ -1,12 +1,13 @@
 import 'dart:html';
 import 'package:angular2/angular2.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:sherlock/services/game_service.dart';
 
 @Component(
     selector: 'unresolved-board-cell',
     styleUrls: const ['unresolved_board_cell_component.css'],
     templateUrl: 'unresolved_board_cell_component.html',
-    directives: const [NgFor]
+    directives: const [NgFor, materialDirectives]
 )
 class UnresolvedBoardCellComponent {
 
@@ -28,6 +29,7 @@ class UnresolvedBoardCellComponent {
 
   void onClick(int item, MouseEvent event) {
     if (_gameService.currentField.getCell(line, position).currentState.hasPossibleItem(item)) {
+      _gameService.addPositionToUndo();
       if (event.button == 0) {
         _gameService.resolveCell(line, position, item);
       }
