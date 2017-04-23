@@ -10,6 +10,7 @@
         <div *ngFor="let column of columns" class="layout-cell">
             <horizontal-clue #horizontalClue *ngFor="let row of rows"
                              [clue]="getClue(column*7+row)"
+                             (contextmenu)="$event.preventDefault()"
             >
             </horizontal-clue>
 
@@ -20,6 +21,7 @@
     <div class="text-hint">Clues</div>
     <vertical-clue #verticalClue *ngFor="let clue of verticalClues"
                    [clue]="clue"
+                   (contextmenu)="$event.preventDefault()"
     >
     </vertical-clue>
     <div class="buttons">

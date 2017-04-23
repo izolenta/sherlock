@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:sherlock/services/game_service.dart';
 
@@ -23,5 +24,16 @@ class UnresolvedBoardCellComponent {
       return "s$line$index";
     }
     else return "empty";
+  }
+
+  void onClick(int item, MouseEvent event) {
+    if (_gameService.currentField.getCell(line, position).currentState.hasPossibleItem(item)) {
+      if (event.button == 0) {
+        _gameService.resolveCell(line, position, item);
+      }
+      else if (event.button == 2) {
+        _gameService.removeItem(line, position, item);
+      }
+    }
   }
 }

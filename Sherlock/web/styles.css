@@ -26,10 +26,33 @@ body {
   background-size: 600%;
 }
 
+.layout-row {
+  display: table-row;
+}
+.layout-cell {
+  vertical-align: top;
+  display: table-cell;
+}
+
+.inline {
+  display: inline-block
+}
+
+.popup-wrapper {
+  opacity: 0.95;
+}
+
+.paper-container {
+  background: #000 !important;
+  color: #fff !important;
+  padding: 12px !important;
+}
+
 .sprite.large {
   width: 64px;
   height: 64px;
 }
+
 .sprite.small {
   width: 32px;
   height: 32px;
@@ -38,6 +61,21 @@ body {
 .sprite.middle {
   width: 48px;
   height: 48px;
+}
+
+.sprite.micro {
+  width: 28px;
+  height: 28px;
+}
+
+.tooltipped {
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.tooltipped .sprite.micro {
+  position: relative;
+  top: 8px;
 }
 
 .sprite.s00 {background-position: 0 0}

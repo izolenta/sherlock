@@ -13,7 +13,7 @@ class TwoInSameColumnClue extends GenericClue {
   int get sortOrder => 0;
 
   @override
-  String get description => "These two items should be placed in same column";
+  String get description => "Items {0} and {1} should be placed in same column";
 
   TwoInSameColumnClue.generate(GameField board) : super.generate(board) {
     Random random = new Random();

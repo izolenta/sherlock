@@ -94,6 +94,16 @@ class GameService {
     return opened;
   }
 
+  void resolveCell(int line, int position, int item) {
+    _currentField.getCell(line, position).currentState.resolveWith(item);
+    _currentField.optimizeBoard();
+  }
+
+  void removeItem(int line, int position, int item) {
+    _currentField.getCell(line, position).currentState.removeItem(item);
+    _currentField.optimizeBoard();
+  }
+
   void _openRandomCell(GameField field) {
     Random random = new Random();
     int line;

@@ -1,4 +1,5 @@
 import 'package:angular2/angular2.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:sherlock/model/clues/clue_item.dart';
 import 'package:sherlock/model/clues/generic_clue.dart';
 import 'package:sherlock/model/clues/two_in_same_column_clue.dart';
@@ -8,10 +9,18 @@ import 'package:sherlock/model/clues/two_not_in_same_column_clue.dart';
   selector: 'vertical-clue',
   styleUrls: const ['vertical_clue_component.css'],
   templateUrl: 'vertical_clue_component.html',
-  directives: const [NgIf],
+  directives: const [NgIf, materialDirectives],
 )
-class VerticalClueComponent {
+class VerticalClueComponent implements OnChanges {
   @Input() GenericClue clue;
+
+  String _formattedDescription = "";
+  String get formattedDescription => _formattedDescription;
+
+  @override
+  void ngOnChanges(Map<String, SimpleChange> changes) {
+    _formatDescription();
+  }
 
   ClueItem get firstItem {
     if (clue is TwoInSameColumnClue) {
@@ -43,5 +52,14 @@ class VerticalClueComponent {
 
   bool needToDisplayCross() {
     return clue is TwoNotInSameColumnClue;
+  }
+
+  void _formatDescription() {
+    String divFirst = '<div class="sprite micro inline ' + getFirstSpriteClass() +
+        '"></div>';
+    String divSecond = '<div class="sprite micro inline ' + getSecondSpriteClass() +
+        '"></div>';
+    _formattedDescription = clue.description.replaceAll("{0}", divFirst);
+    _formattedDescription = _formattedDescription.replaceAll("{1}", divSecond);
   }
 }

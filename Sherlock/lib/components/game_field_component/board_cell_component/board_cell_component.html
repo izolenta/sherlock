@@ -1,8 +1,10 @@
-<resolved-board-cell class="sprite large" [ngClass]="getResolvedClass()" *ngIf="isResolved">
-
+<resolved-board-cell class="sprite large" [ngClass]="getResolvedClass()" *ngIf="isResolved"
+    (contextmenu)="$event.preventDefault()"
+                     >
 </resolved-board-cell>
 <unresolved-board-cell *ngIf="!isResolved"
                        [line]="line"
                        [position]="position"
+                       (contextmenu)="$event.preventDefault()"
 >
 </unresolved-board-cell>

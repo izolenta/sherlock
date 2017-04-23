@@ -1,4 +1,4 @@
-<div class="table-row">
+<div class="table-row" tooltipTarget #ref="tooltipTarget">
     <div class="sprite clue middle layout-cell" [ngClass]="getFirstSpriteClass()"></div>
     <div class="sprite clue middle layout-cell" [ngClass]="getThirdSpriteClass()"></div>
     <div class="sprite clue middle layout-cell" [ngClass]="getSecondSpriteClass()"></div>
@@ -7,3 +7,10 @@
     <img src="img/arrows-3x2.png" class="arrows long" *ngIf="needToDisplayArrows3()">
     <img src="img/arrows-2x2.png" class="arrows" *ngIf="needToDisplayArrows2()">
 </div>
+
+<material-tooltip-card
+        [for]="ref"
+>
+    <div [innerHtml]="formattedDescription" class="tooltipped">
+    </div>
+</material-tooltip-card>

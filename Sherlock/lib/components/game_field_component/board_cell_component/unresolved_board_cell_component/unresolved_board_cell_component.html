@@ -2,6 +2,7 @@
     <div *ngFor="let number of numbers"
          class="unresolved-cell sprite small"
          [ngClass]="getClass(number+(row-1)*3)"
+         (mousedown)="onClick(number+(row-1)*3, $event)"
     >
     </div>
 </div>

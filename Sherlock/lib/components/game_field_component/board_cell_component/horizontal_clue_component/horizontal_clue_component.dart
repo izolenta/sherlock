@@ -1,4 +1,5 @@
 import 'package:angular2/angular2.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:sherlock/model/clues/clue_item.dart';
 import 'package:sherlock/model/clues/generic_clue.dart';
 import 'package:sherlock/model/clues/one_should_be_before_other_clue.dart';
@@ -11,11 +12,19 @@ import 'package:sherlock/model/clues/two_with_not_third_at_center_clue.dart';
     selector: 'horizontal-clue',
     styleUrls: const ['horizontal_clue_component.css'],
     templateUrl: 'horizontal_clue_component.html',
-    directives: const [NgIf]
+    directives: const [NgIf, materialDirectives]
 )
-class HorizontalClueComponent {
+class HorizontalClueComponent implements OnChanges {
   @Input() GenericClue clue;
   @Input() bool isUsed = false;
+
+  String _formattedDescription = "";
+  String get formattedDescription => _formattedDescription;
+
+  @override
+  void ngOnChanges(Map<String, SimpleChange> changes) {
+    _formatDescription();
+  }
 
   ClueItem get firstItem {
     if (clue is ThreeAdjacentClue) {
@@ -106,5 +115,17 @@ class HorizontalClueComponent {
 
   bool needToDisplayDots() {
     return clue is OneShouldBeBeforeOtherClue;
+  }
+
+  void _formatDescription() {
+    String divFirst = '<div class="sprite micro inline ' + getFirstSpriteClass() +
+        '"></div>';
+    String divSecond = '<div class="sprite micro inline ' + getSecondSpriteClass() +
+        '"></div>';
+    String divThird = '<div class="sprite micro inline ' + getThirdSpriteClass() +
+        '"></div>';
+    _formattedDescription = clue.description.replaceAll("{0}", divFirst);
+    _formattedDescription = _formattedDescription.replaceAll("{1}", divSecond);
+    _formattedDescription = _formattedDescription.replaceAll("{2}", divThird);
   }
 }

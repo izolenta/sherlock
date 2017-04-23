@@ -1,3 +1,11 @@
-<div class="sprite clue middle" [ngClass]="getFirstSpriteClass()"></div>
-<div class="sprite clue middle" [ngClass]="getSecondSpriteClass()"></div>
-<img src="img/cross.png" *ngIf="needToDisplayCross()">
+<span tooltipTarget #ref="tooltipTarget">
+    <div class="sprite clue middle" [ngClass]="getFirstSpriteClass()"></div>
+    <div class="sprite clue middle" [ngClass]="getSecondSpriteClass()"></div>
+    <img src="img/cross.png" *ngIf="needToDisplayCross()">
+</span>
+<material-tooltip-card
+        [for]="ref"
+>
+    <div [innerHtml]="formattedDescription" class="tooltipped">
+    </div>
+</material-tooltip-card>
