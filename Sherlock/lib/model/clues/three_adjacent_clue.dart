@@ -14,8 +14,8 @@ class ThreeAdjacentClue extends GenericClue {
   int get sortOrder => 2;
 
   @override
-  String get description => "Items {0}, {2} and {1} should be placed in adjacent columns. The order can be changed, but {2} should be always in the middle, i.e. <nobr>{0}{2}{1}</nobr> or <nobr>{1}{2}{0}</nobr>.<br>"
-  "Also this means that {2} cannot be at most left and most right columns.";
+  String get description => "Items {0}, {2} and {1} should be placed in adjacent columns. The order can be different, but {2} should be always in the middle, i.e. <nobr>{0}{2}{1}</nobr> or <nobr>{1}{2}{0}</nobr>.<br>"
+  "Also this means that {2} cannot be in leftmost and rightmost columns.";
 
   ThreeAdjacentClue.generate(GameField board) : super.generate(board) {
     Random random = new Random();

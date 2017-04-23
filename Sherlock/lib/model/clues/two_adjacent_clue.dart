@@ -13,7 +13,7 @@ class TwoAdjacentClue extends GenericClue {
   int get sortOrder => 1;
 
   @override
-  String get description => "Items {0} and {2} should be placed in adjacent columns, but the order can be changed, i.e. <nobr>{0}{2}</nobr> or <nobr>{2}{0}</nobr>";
+  String get description => "Items {0} and {2} should be placed in adjacent columns, but the order can be different, i.e. <nobr>{0}{2}</nobr> or <nobr>{2}{0}</nobr>";
 
   TwoAdjacentClue.generate(GameField board) : super.generate(board) {
     Random random = new Random();

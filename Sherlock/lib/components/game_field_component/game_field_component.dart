@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cookie/cookie.dart' as cookie;
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:sherlock/components/game_field_component/board_cell_component/horizontal_clue_component/horizontal_clue_component.dart';
@@ -29,7 +30,7 @@ import 'package:sherlock/services/sound_service.dart';
       HelpComponent
     ]
 )
-class GameFieldComponent {
+class GameFieldComponent implements OnInit {
 
   @ViewChild('modalWin') MaterialDialogComponent modal;
 
@@ -48,7 +49,7 @@ class GameFieldComponent {
 
   String get undoButtonText => _undoText;
 
-  bool isHelpDisplayed = true;
+  bool isHelpDisplayed = false;
 
   bool get winningState => _gameService.winningState;
   bool get losingState => _gameService.losingState;
@@ -86,6 +87,15 @@ class GameFieldComponent {
       return horizontalClues[index];
     }
     return null;
+  }
+
+  @override
+  void ngOnInit() {
+    String visited = cookie.get("already-visited");
+    if (visited == null) {
+      cookie.set("already-visited", "yes");
+      isHelpDisplayed = true;
+    }
   }
 
   void restartGame() {
