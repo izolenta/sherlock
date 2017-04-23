@@ -2,6 +2,7 @@ import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:sherlock/services/game_service.dart';
+import 'package:sherlock/services/sound_service.dart';
 
 @Component(
     selector: 'unresolved-board-cell',
@@ -14,11 +15,13 @@ class UnresolvedBoardCellComponent {
   final List<int> numbers = [0, 1, 2];
   final List<int> rows = [1, 2];
   final GameService _gameService;
+  final SoundService _soundService;
+
 
   @Input() int line;
   @Input() int position;
 
-  UnresolvedBoardCellComponent(this._gameService);
+  UnresolvedBoardCellComponent(this._gameService, this._soundService);
 
   String getClass(int index) {
     if (_gameService.currentField.getCell(line, position).currentState.hasPossibleItem(index)) {
@@ -35,6 +38,12 @@ class UnresolvedBoardCellComponent {
       }
       else if (event.button == 2) {
         _gameService.removeItem(line, position, item);
+      }
+      if (_gameService.isGameWon()) {
+        _soundService.playSuccess();
+      }
+      else {
+        _soundService.playWaterdrop();
       }
     }
   }

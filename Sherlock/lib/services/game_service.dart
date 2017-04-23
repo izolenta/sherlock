@@ -17,6 +17,10 @@ class GameService {
 
   int difficulty = 2;
 
+  bool _winningState = false;
+
+  bool get winningState => _winningState;
+
   GameField get currentField => _currentField;
   List<List<GameLine>> turns = [];
 
@@ -28,6 +32,7 @@ class GameService {
   void initRandomConfiguration() {
     _currentPuzzle = _generateRuleSet(new GameField.initial(), 0);
     _currentField = _currentPuzzle.board;
+    _updateWiningState();
     turns = [];
 
 //    print("Clues total: ${currentRuleSet.length}");
@@ -37,11 +42,21 @@ class GameService {
   void resolveCell(int line, int position, int item) {
     _currentField.getCell(line, position).currentState.resolveWith(item);
     _currentField.optimizeBoard();
+    _updateWiningState();
   }
 
   void removeItem(int line, int position, int item) {
     _currentField.getCell(line, position).currentState.removeItem(item);
     _currentField.optimizeBoard();
+    _updateWiningState();
+  }
+
+  bool _updateWiningState() {
+    _winningState = _currentField.isResolvedCorrectly;
+  }
+
+  bool isGameWon() {
+    return _currentField.isResolvedCorrectly;;
   }
 
   void addPositionToUndo() {
@@ -51,6 +66,7 @@ class GameService {
   void undo() {
     if (_undoPositions.isNotEmpty) {
       _currentField = new GameField.fromArray(_undoPositions.removeLast());
+      _updateWiningState();
     }
   }
 
@@ -60,6 +76,7 @@ class GameService {
       undo();
       undoed = true;
     }
+    _updateWiningState();
     return undoed;
   }
 

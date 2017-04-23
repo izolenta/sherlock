@@ -10,6 +10,9 @@
 
 <material-tooltip-card *ngIf="!isUsed && clue != null"
         [for]="ref"
+        [offsetX]="-100"
+        [offsetY]="4"
+
 >
     <div [innerHtml]="formattedDescription" class="tooltipped">
     </div>

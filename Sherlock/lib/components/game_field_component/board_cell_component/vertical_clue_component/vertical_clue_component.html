@@ -4,7 +4,10 @@
     <img src="img/cross.png" *ngIf="needToDisplayCross()">
 </span>
 <material-tooltip-card *ngIf="!isUsed"
-        [for]="ref"
+       [for]="ref"
+       [offsetX]="-30"
+       [offsetY]="0"
+
 >
     <div [innerHtml]="formattedDescription" class="tooltipped">
     </div>

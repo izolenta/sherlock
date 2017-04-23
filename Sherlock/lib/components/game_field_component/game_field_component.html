@@ -33,3 +33,6 @@
         <button (click)="changeDifficulty()">Difficulty: {{difficultyString}}</button>
     </div>
 </div>
+<material-dialog #modalWin *ngIf="winningState" class="winningModal">
+    <div class="winningModalText">Congratulations, you won!</div>
+</material-dialog>

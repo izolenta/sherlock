@@ -20,6 +20,8 @@ class HorizontalClueComponent implements OnChanges {
   String _formattedDescription = "";
   String get formattedDescription => _formattedDescription;
 
+  List<RelativePosition> tooltipPositions = [RelativePosition.AdjacentBottom];
+
   bool get isUsed => clue?.used?? false;
 
   @override

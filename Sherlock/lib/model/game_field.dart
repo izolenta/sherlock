@@ -9,6 +9,23 @@ class GameField implements Cloneable {
   List<GameLine> get lines => _lines;
   bool get isResolved => getNotResolvedCellCount() == 0;
 
+  bool get isResolvedCorrectly {
+    if (isResolved) {
+      for (int i=0; i<6; i++) {
+        for (int j=0; j<6; j++) {
+          GameCell cell = getCell(i, j);
+          if (!cell.currentState.hasPossibleItem(cell.correctItem)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   int get openedCells => 36 - getNotResolvedCellCount();
 
   GameField.initial() {
