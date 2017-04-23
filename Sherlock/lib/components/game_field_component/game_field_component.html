@@ -35,4 +35,9 @@
 </div>
 <material-dialog #modalWin *ngIf="winningState" class="winningModal">
     <div class="winningModalText">Congratulations, you won!</div>
+    <div class="winningModalSubText">Press 'Start New' or change Difficulty</div>
+</material-dialog>
+<material-dialog #modalWin *ngIf="losingState" class="winningModal">
+    <div class="winningModalText">No, it's wrong.</div>
+    <div class="winningModalSubText">Press 'Undo to Last Correct' and try again.</div>
 </material-dialog>

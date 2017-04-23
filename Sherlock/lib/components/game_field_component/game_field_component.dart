@@ -46,6 +46,7 @@ class GameFieldComponent {
   String get undoButtonText => _undoText;
 
   bool get winningState => _gameService.winningState;
+  bool get losingState => _gameService.losingState;
 
   String get difficultyString {
     if (_gameService.difficulty == 0) {

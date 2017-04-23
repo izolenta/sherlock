@@ -18,8 +18,11 @@ class GameService {
   int difficulty = 2;
 
   bool _winningState = false;
+  bool _losingState = false;
 
   bool get winningState => _winningState;
+
+  bool get losingState => _losingState;
 
   GameField get currentField => _currentField;
   List<List<GameLine>> turns = [];
@@ -53,6 +56,7 @@ class GameService {
 
   bool _updateWiningState() {
     _winningState = _currentField.isResolvedCorrectly;
+    _losingState =  _currentField.isResolved && !_currentField.isResolvedCorrectly;
   }
 
   bool isGameWon() {
@@ -95,7 +99,7 @@ class GameService {
   PuzzleDescription _generateRuleSet(GameField field, int id) {
     List<GenericClue> clues;
     GameField fieldClone;
-    for (int i=0; i< difficulty*3; i++) {
+    for (int i=0; i< difficulty*5; i++) {
       _openRandomCell(field);
     }
     while(true) {
