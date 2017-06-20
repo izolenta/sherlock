@@ -54,13 +54,13 @@ class GameService {
     _updateWiningState();
   }
 
-  bool _updateWiningState() {
+  void _updateWiningState() {
     _winningState = _currentField.isResolvedCorrectly;
     _losingState =  _currentField.isResolved && !_currentField.isResolvedCorrectly;
   }
 
   bool isGameWon() {
-    return _currentField.isResolvedCorrectly;;
+    return _currentField.isResolvedCorrectly;
   }
 
   void addPositionToUndo() {

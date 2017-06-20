@@ -5,7 +5,6 @@ import 'package:sherlock/model/clues/two_adjacent_clue.dart';
 import 'package:sherlock/model/clues/two_in_same_column_clue.dart';
 import 'package:sherlock/model/clues/two_not_adjacent_clue.dart';
 import 'package:sherlock/model/clues/two_not_in_same_column_clue.dart';
-import 'package:sherlock/model/clues/two_with_not_third_at_center_clue.dart';
 import 'package:sherlock/model/game_field.dart';
 
 class ClueGenerator {
